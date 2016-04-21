@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-               BuildableName = "Log.framework"
-               BlueprintName = "Log"
+               BlueprintIdentifier = "B08CCA031CC8DF1400FB17EE"
+               BuildableName = "Log-tvOS.framework"
+               BlueprintName = "Log-tvOS"
                ReferencedContainer = "container:Log.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B08CC9991CC526B000FB17EE"
-               BuildableName = "LogTests.xctest"
-               BlueprintName = "LogTests"
+               BlueprintIdentifier = "B08CCA0C1CC8DF1400FB17EE"
+               BuildableName = "Log-tvOSTests.xctest"
+               BlueprintName = "Log-tvOSTests"
                ReferencedContainer = "container:Log.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-            BuildableName = "Log.framework"
-            BlueprintName = "Log"
+            BlueprintIdentifier = "B08CCA031CC8DF1400FB17EE"
+            BuildableName = "Log-tvOS.framework"
+            BlueprintName = "Log-tvOS"
             ReferencedContainer = "container:Log.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-            BuildableName = "Log.framework"
-            BlueprintName = "Log"
+            BlueprintIdentifier = "B08CCA031CC8DF1400FB17EE"
+            BuildableName = "Log-tvOS.framework"
+            BlueprintName = "Log-tvOS"
             ReferencedContainer = "container:Log.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-            BuildableName = "Log.framework"
-            BlueprintName = "Log"
+            BlueprintIdentifier = "B08CCA031CC8DF1400FB17EE"
+            BuildableName = "Log-tvOS.framework"
+            BlueprintName = "Log-tvOS"
             ReferencedContainer = "container:Log.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
