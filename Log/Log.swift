@@ -29,9 +29,9 @@ private func ==(left: LogDomain, right: LogDomain) -> Bool {
  - Model: The domain for data model related content.
  */
 public enum Domain: Int, LogDomain {
-    case Common = 0
-    case Network = -1
-    case Model = -2
+    case common = 0
+    case network = -1
+    case model = -2
     
     public var rawDomain: Int {
         return self.rawValue
@@ -51,20 +51,20 @@ public struct Log {
      - None: The level for fatal errors, can also be used for 'always log'.
      */
     public enum Level: Int, CustomStringConvertible {
-        case Debug = 3
-        case Warn =  2
-        case Error = 1
-        case None =  0
+        case debug = 3
+        case warn =  2
+        case error = 1
+        case none =  0
         
         public var description: String {
             switch(self) {
-            case .Debug:
+            case .debug:
                 return "Debug"
-            case .Warn:
+            case .warn:
                 return "Warning"
-            case .Error:
+            case .error:
                 return "Error"
-            case .None:
+            case .none:
                 return "No specific level"
             }
         }
@@ -75,12 +75,12 @@ public struct Log {
      Any log input with the specified level or a lower level will be included in the log, and input with a higher level will be suppressed.
      - Default value: .Warn
      */
-    public static var logLevel: Level = .Warn
+    public static var logLevel: Level = .warn
     /**
      The domain for which to output supplied logs.
      - Default value: .Common
      */
-    public static var logDomain: LogDomain = Domain.Common
+    public static var logDomain: LogDomain = Domain.common
     /**
      Determines if the log prints output to the console or not.
      When not printing to the console any permissible output is still returned from the log function (useful when the log is to be redirected to a file or alternate service).
@@ -91,8 +91,8 @@ public struct Log {
      The date formatter used to timestamp log output.
      - Default value: 'HH:mm:ss.SSSS'
      */
-    public static var formatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
+    public static var formatter: DateFormatter = {
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SSSS"
         return formatter
     }()
@@ -117,12 +117,12 @@ public struct Log {
         - funcname: The name of the function which generated the log
             - Default value: #function
      */
-    public static func log<T>(level: Level, _ object: T, domain: LogDomain = Domain.Common, filename: String = #file, line: Int = #line, funcname: String = #function) -> String
+    public static func log<T>(_ level: Level, _ object: T, domain: LogDomain = Domain.common, filename: String = #file, line: Int = #line, funcname: String = #function) -> String
     {
-        guard logDomain == Domain.Common || domain == logDomain else { return "" }
+        guard logDomain == Domain.common || domain == logDomain else { return "" }
         guard level.rawValue <= Log.logLevel.rawValue else { return "" }
         
-        let full = "\(formatter.stringFromDate(NSDate())) \(level.description): \((filename as NSString).lastPathComponent) (\(line)) \(funcname) : \(object)"
+        let full = "\(formatter.string(from: Date())) \(level.description): \((filename as NSString).lastPathComponent) (\(line)) \(funcname) : \(object)"
         
         if printLog {
             print(full)

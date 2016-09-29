@@ -16,41 +16,41 @@ class LogTests: QuickSpec {
     override func spec() {
         describe("Log") {
             it("logs the input with location identification and time") {
-                let date = NSDate()
-                Log.logLevel = .None
-                Log.logDomain = Domain.Common
+                let date = Date()
+                Log.logLevel = .none
+                Log.logDomain = Domain.common
                 
-                let output = Log.log(.None, "an error occurred")
+                let output = Log.log(.none, "an error occurred")
                 
                 expect(output).to(contain("an error occurred"))
                 expect(output).to(contain("LogTests"))
                 expect(output).to(contain("23"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.second, from: date))"))
             }
         }
         
         describe("Log") {
             it("logs error but not warning or debug input with location identification and time") {
-                let date = NSDate()
-                Log.logLevel = .Error
-                Log.logDomain = Domain.Common
+                let date = Date()
+                Log.logLevel = .error
+                Log.logDomain = Domain.common
                 
-                let output = Log.log(.Error, "an error occurred")
+                let output = Log.log(.error, "an error occurred")
                 
                 expect(output).to(contain("an error occurred"))
                 expect(output).to(contain("LogTests"))
                 expect(output).to(contain("40"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.second, from: date))"))
                 
-                let noWarning = Log.log(.Warn, "empty")
+                let noWarning = Log.log(.warn, "empty")
                 
                 expect(noWarning).to(beEmpty())
                 
-                let noDebug = Log.log(.Debug, "empty")
+                let noDebug = Log.log(.debug, "empty")
                 
                 expect(noDebug).to(beEmpty())
             }
@@ -58,29 +58,29 @@ class LogTests: QuickSpec {
         
         describe("Log") {
             it("logs error and warning but not debug input with location identification and time") {
-                let date = NSDate()
-                Log.logLevel = .Warn
-                Log.logDomain = Domain.Common
+                let date = Date()
+                Log.logLevel = .warn
+                Log.logDomain = Domain.common
                 
-                let output = Log.log(.Error, "an error occurred")
+                let output = Log.log(.error, "an error occurred")
                 
                 expect(output).to(contain("an error occurred"))
                 expect(output).to(contain("LogTests"))
                 expect(output).to(contain("65"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.second, from: date))"))
                 
-                let warningOutput = Log.log(.Warn, "a warning occurred")
+                let warningOutput = Log.log(.warn, "a warning occurred")
                 
                 expect(warningOutput).to(contain("a warning occurred"))
                 expect(warningOutput).to(contain("LogTests"))
                 expect(warningOutput).to(contain("74"))
-                expect(warningOutput).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(warningOutput).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(warningOutput).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(warningOutput).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(warningOutput).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(warningOutput).to(contain("\(Calendar.current.component(.second, from: date))"))
                 
-                let noDebug = Log.log(.Debug, "empty")
+                let noDebug = Log.log(.debug, "empty")
                 
                 expect(noDebug).to(beEmpty())
             }
@@ -88,85 +88,85 @@ class LogTests: QuickSpec {
         
         describe("Log") {
             it("logs error, warning and debug input with location identification and time") {
-                let date = NSDate()
-                Log.logLevel = .Debug
-                Log.logDomain = Domain.Common
+                let date = Date()
+                Log.logLevel = .debug
+                Log.logDomain = Domain.common
                 
-                let output = Log.log(.Error, "an error occurred")
+                let output = Log.log(.error, "an error occurred")
                 
                 expect(output).to(contain("an error occurred"))
                 expect(output).to(contain("LogTests"))
                 expect(output).to(contain("95"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.second, from: date))"))
                 
-                let warningOutput = Log.log(.Warn, "a warning occurred")
+                let warningOutput = Log.log(.warn, "a warning occurred")
                 
                 expect(warningOutput).to(contain("a warning occurred"))
                 expect(warningOutput).to(contain("LogTests"))
                 expect(warningOutput).to(contain("104"))
-                expect(warningOutput).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(warningOutput).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(warningOutput).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(warningOutput).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(warningOutput).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(warningOutput).to(contain("\(Calendar.current.component(.second, from: date))"))
                 
-                let debugOutput = Log.log(.Warn, "a debug occurred")
+                let debugOutput = Log.log(.warn, "a debug occurred")
                 
                 expect(debugOutput).to(contain("a debug occurred"))
                 expect(debugOutput).to(contain("LogTests"))
                 expect(debugOutput).to(contain("113"))
-                expect(debugOutput).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(debugOutput).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(debugOutput).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(debugOutput).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(debugOutput).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(debugOutput).to(contain("\(Calendar.current.component(.second, from: date))"))
             }
         }
         
         describe("Log") {
             it("logs all for common domain input with location identification and time") {
-                let date = NSDate()
-                Log.logLevel = .None
-                Log.logDomain = Domain.Common
+                let date = Date()
+                Log.logLevel = .none
+                Log.logDomain = Domain.common
                 
-                let output = Log.log(.None, "an error occurred", domain: Domain.Common)
+                let output = Log.log(.none, "an error occurred", domain: Domain.common)
                 
                 expect(output).to(contain("an error occurred"))
                 expect(output).to(contain("LogTests"))
                 expect(output).to(contain("130"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.second, from: date))"))
                 
-                let networkOutput = Log.log(.None, "a network error occurred", domain: Domain.Network)
+                let networkOutput = Log.log(.none, "a network error occurred", domain: Domain.network)
                 
                 expect(networkOutput).to(contain("a network error occurred"))
                 expect(networkOutput).to(contain("LogTests"))
                 expect(networkOutput).to(contain("139"))
-                expect(networkOutput).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(networkOutput).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(networkOutput).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(networkOutput).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(networkOutput).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(networkOutput).to(contain("\(Calendar.current.component(.second, from: date))"))
             }
         }
         
         describe("Log") {
             it("logs only specific domain input with location identification and time") {
-                let date = NSDate()
-                Log.logLevel = .None
-                Log.logDomain = Domain.Network
+                let date = Date()
+                Log.logLevel = .none
+                Log.logDomain = Domain.network
                 
-                let output = Log.log(.None, "a network error occurred", domain: Domain.Network)
+                let output = Log.log(.none, "a network error occurred", domain: Domain.network)
                 
                 expect(output).to(contain("a network error occurred"))
                 expect(output).to(contain("LogTests"))
                 expect(output).to(contain("156"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Hour, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Minute, fromDate: date))"))
-                expect(output).to(contain("\(NSCalendar.currentCalendar().component(.Second, fromDate: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.hour, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.minute, from: date))"))
+                expect(output).to(contain("\(Calendar.current.component(.second, from: date))"))
                 
-                let noOutput = Log.log(.None, "a network error occurred", domain: Domain.Common)
+                let noOutput = Log.log(.none, "a network error occurred", domain: Domain.common)
                 
                 expect(noOutput).to(beEmpty())
                 
-                let noOtherOutput = Log.log(.None, "a network error occurred", domain: Domain.Model)
+                let noOtherOutput = Log.log(.none, "a network error occurred", domain: Domain.model)
                 
                 expect(noOtherOutput).to(beEmpty())
             }
@@ -174,15 +174,15 @@ class LogTests: QuickSpec {
         
         describe("Log") {
             it("logs input with location identification and custom time") {
-                Log.logLevel = .None
-                Log.logDomain = Domain.Common
+                Log.logLevel = .none
+                Log.logDomain = Domain.common
                 
                 let originalFormatter = Log.formatter
                 
-                Log.formatter = NSDateFormatter()
+                Log.formatter = DateFormatter()
                 Log.formatter.dateFormat = "'custom text'"
                 
-                let output = Log.log(.None, "an error occurred")
+                let output = Log.log(.none, "an error occurred")
                 
                 expect(output).to(contain("an error occurred"))
                 expect(output).to(contain("LogTests"))
@@ -196,10 +196,10 @@ class LogTests: QuickSpec {
         
         describe("Log") {
             it("logs the calling function name") {
-                Log.logLevel = .None
-                Log.logDomain = Domain.Common
+                Log.logLevel = .none
+                Log.logDomain = Domain.common
                 
-                let output = Log.log(.None, "an error occurred")
+                let output = Log.log(.none, "an error occurred")
                 
                 expect(output).to(contain("spec()"))
             }

@@ -19,7 +19,7 @@ Install with Carthage or simply by dragging the Log.swift file. Can also be inst
 ## Usage
 ___
 
-It's as simple as `Log.log(.Debug, "Hello world")`
+It's as simple as `Log.log(.debug, "Hello world")`
 
 ## Contributions
 ___

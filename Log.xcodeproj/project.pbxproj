@@ -279,9 +279,9 @@
 			productReference = B08CCA0D1CC8DF1400FB17EE /* LogTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B08CCA251CC8DFDE00FB17EE /* Log-OSX */ = {
+		B08CCA251CC8DFDE00FB17EE /* Log-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B08CCA371CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-OSX" */;
+			buildConfigurationList = B08CCA371CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-macOS" */;
 			buildPhases = (
 				B08CCA211CC8DFDE00FB17EE /* Sources */,
 				B08CCA221CC8DFDE00FB17EE /* Frameworks */,
@@ -292,14 +292,14 @@
 			);
 			dependencies = (
 			);
-			name = "Log-OSX";
+			name = "Log-macOS";
 			productName = "Log-macOS";
 			productReference = B08CCA261CC8DFDE00FB17EE /* Log.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B08CCA2E1CC8DFDE00FB17EE /* Log-OSXTests */ = {
+		B08CCA2E1CC8DFDE00FB17EE /* Log-macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B08CCA3A1CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-OSXTests" */;
+			buildConfigurationList = B08CCA3A1CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-macOSTests" */;
 			buildPhases = (
 				B08CCA2B1CC8DFDE00FB17EE /* Sources */,
 				B08CCA2C1CC8DFDE00FB17EE /* Frameworks */,
@@ -310,7 +310,7 @@
 			dependencies = (
 				B08CCA321CC8DFDE00FB17EE /* PBXTargetDependency */,
 			);
-			name = "Log-OSXTests";
+			name = "Log-macOSTests";
 			productName = "Log-macOSTests";
 			productReference = B08CCA2F1CC8DFDE00FB17EE /* LogTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -322,26 +322,32 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Nice Agency";
 				TargetAttributes = {
 					B08CC98F1CC526AF00FB17EE = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					B08CC9991CC526B000FB17EE = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					B08CCA031CC8DF1400FB17EE = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					B08CCA0C1CC8DF1400FB17EE = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					B08CCA251CC8DFDE00FB17EE = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					B08CCA2E1CC8DFDE00FB17EE = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -361,8 +367,8 @@
 				B08CC9991CC526B000FB17EE /* Log-iOSTests */,
 				B08CCA031CC8DF1400FB17EE /* Log-tvOS */,
 				B08CCA0C1CC8DF1400FB17EE /* Log-tvOSTests */,
-				B08CCA251CC8DFDE00FB17EE /* Log-OSX */,
-				B08CCA2E1CC8DFDE00FB17EE /* Log-OSXTests */,
+				B08CCA251CC8DFDE00FB17EE /* Log-macOS */,
+				B08CCA2E1CC8DFDE00FB17EE /* Log-macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -476,7 +482,7 @@
 		};
 		B08CCA321CC8DFDE00FB17EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B08CCA251CC8DFDE00FB17EE /* Log-OSX */;
+			target = B08CCA251CC8DFDE00FB17EE /* Log-macOS */;
 			targetProxy = B08CCA311CC8DFDE00FB17EE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -496,8 +502,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -545,8 +553,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -566,6 +576,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -577,6 +588,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -589,6 +601,7 @@
 				PRODUCT_NAME = Log;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -596,6 +609,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -607,6 +621,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-iOS";
 				PRODUCT_NAME = Log;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -622,6 +637,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-iOSTests";
 				PRODUCT_NAME = LogTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -637,12 +653,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-iOSTests";
 				PRODUCT_NAME = LogTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		B08CCA161CC8DF1400FB17EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -654,6 +672,7 @@
 				PRODUCT_NAME = Log;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -662,6 +681,7 @@
 		B08CCA171CC8DF1400FB17EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -673,6 +693,7 @@
 				PRODUCT_NAME = Log;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -691,6 +712,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-tvOSTests";
 				PRODUCT_NAME = LogTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
@@ -708,6 +730,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-tvOSTests";
 				PRODUCT_NAME = LogTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;
@@ -715,7 +738,7 @@
 		B08CCA381CC8DFDE00FB17EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -726,17 +749,18 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-macOS";
 				PRODUCT_NAME = Log;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		B08CCA391CC8DFDE00FB17EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -747,10 +771,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-macOS";
 				PRODUCT_NAME = Log;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -767,9 +792,10 @@
 				INFOPLIST_FILE = LogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-macOSTests";
 				PRODUCT_NAME = LogTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -786,9 +812,10 @@
 				INFOPLIST_FILE = LogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "agency.nice.Log-macOSTests";
 				PRODUCT_NAME = LogTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -829,6 +856,7 @@
 				B08CCA171CC8DF1400FB17EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B08CCA181CC8DF1400FB17EE /* Build configuration list for PBXNativeTarget "Log-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -837,22 +865,25 @@
 				B08CCA1A1CC8DF1400FB17EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		B08CCA371CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-OSX" */ = {
+		B08CCA371CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B08CCA381CC8DFDE00FB17EE /* Debug */,
 				B08CCA391CC8DFDE00FB17EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		B08CCA3A1CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-OSXTests" */ = {
+		B08CCA3A1CC8DFDE00FB17EE /* Build configuration list for PBXNativeTarget "Log-macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B08CCA3B1CC8DFDE00FB17EE /* Debug */,
 				B08CCA3C1CC8DFDE00FB17EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
