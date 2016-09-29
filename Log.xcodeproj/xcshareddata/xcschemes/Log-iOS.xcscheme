@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-               BuildableName = "Log-iOS.framework"
+               BuildableName = "Log.framework"
                BlueprintName = "Log-iOS"
                ReferencedContainer = "container:Log.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B08CC9991CC526B000FB17EE"
-               BuildableName = "Log-iOSTests.xctest"
+               BuildableName = "LogTests.xctest"
                BlueprintName = "Log-iOSTests"
                ReferencedContainer = "container:Log.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-            BuildableName = "Log-iOS.framework"
+            BuildableName = "Log.framework"
             BlueprintName = "Log-iOS"
             ReferencedContainer = "container:Log.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-            BuildableName = "Log-iOS.framework"
+            BuildableName = "Log.framework"
             BlueprintName = "Log-iOS"
             ReferencedContainer = "container:Log.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B08CC98F1CC526AF00FB17EE"
-            BuildableName = "Log-iOS.framework"
+            BuildableName = "Log.framework"
             BlueprintName = "Log-iOS"
             ReferencedContainer = "container:Log.xcodeproj">
          </BuildableReference>
