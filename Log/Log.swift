@@ -117,7 +117,7 @@ public struct Log {
         - funcname: The name of the function which generated the log
             - Default value: #function
      */
-    public static func log<T>(_ level: Level, _ object: T, domain: LogDomain = Domain.common, filename: String = #file, line: Int = #line, funcname: String = #function) -> String
+    @discardableResult public static func log<T>(_ level: Level, _ object: T, domain: LogDomain = Domain.common, filename: String = #file, line: Int = #line, funcname: String = #function) -> String
     {
         guard logDomain == Domain.common || domain == logDomain else { return "" }
         guard level.rawValue <= Log.logLevel.rawValue else { return "" }
