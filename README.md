@@ -14,12 +14,37 @@ ___
 ## Install
 ___
 
-Install with Carthage or simply by dragging the Log.swift file. Can also be installed with CocoaPods, but Log isn't listed in the official podspec, so you'll need to direct reference the repo.
+Install with Carthage or simply by dragging the Log.swift (and BasicLog.swift) file(s). Can also be installed with CocoaPods, but Log isn't listed in the official podspec, so you'll need to direct reference the repo.
+You can optionally use the BasicLog file or use it as an example of a domain and level system.
 
 ## Usage
 ___
 
-It's as simple as `Log.log(.debug, "Hello world")`
+It's recommended that you start by using the provided `BasicLogDomain` and `BasicLogLevel`. This is best done by extending `BasicLogDomain` to specify your logging domains and the level for each dmain:
+
+```
+extension BasicLogDomain {
+    static let commonSpec: Log<BasicLogDomain, BasicLogLevel>.LoggerSpec = (domain: .common, level: .debug, logger: nil)
+    static let networkSpec: Log<BasicLogDomain, BasicLogLevel>.LoggerSpec = (domain: .network, level: .debug, logger: nil)
+    static let modelSpec: Log<BasicLogDomain, BasicLogLevel>.LoggerSpec = (domain: .model, level: .debug, logger: nil)
+
+    static let logStore = Log<BasicLogDomain, BasicLogLevel>(specs: [commonSpec, networkSpec, modelSpec])
+
+    public func log<T>(_ level: BasicLogLevel, _ object: T, filename: String = #file, line: Int = #line, funcname: String = #function) {
+        let logger = BasicLogDomain.logStore.log(self)
+
+        logger.log(level, object, filename: filename, line: line, funcname: funcname)
+    }
+}
+```
+
+It's also useful to shorten the naming to make the call site simple and to make any custom domain configuration you setup in the future easy to use:
+
+`typealias DLog = BasicLogDomain`
+
+It's then as simple as:
+
+`DLog.common.log(.debug, "Hello world")`
 
 ## Contributions
 ___

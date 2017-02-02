@@ -1,133 +1,134 @@
 //
 //  Log.swift
-//  Ladder
+//  Log
 //
 //  Created by Wain on 31/07/2015.
-//  Copyright (c) 2015 Nice Agency. All rights reserved.
+//  Copyright © 2017 Nice Agency. All rights reserved.
 //
 
 import Foundation
 
 /**
- The LogDomain protocol allows for an extensible domain system.
- See `Domain` for the stock provided domains.
- Any domain with a raw value of zero is a common domain that covers all input.
- Any domain with a non-zero raw value is a specific domain which can be used for input suppression.
+ High level logging settings.
  */
-public protocol LogDomain {
-    var rawDomain: Int { get }
-}
-private func ==(left: LogDomain, right: LogDomain) -> Bool {
-    return left.rawDomain == right.rawDomain
-}
-
-/**
- Basic implementation of a domain system implementing `LogDomain`.
- 
- - Common: The common domain, includes all logged content.
- - Network: The domain for network related content.
- - Model: The domain for data model related content.
- */
-public enum Domain: Int, LogDomain {
-    case common = 0
-    case network = -1
-    case model = -2
-    
-    public var rawDomain: Int {
-        return self.rawValue
-    }
-}
-
-/**
- General purpose logging, offering levels and filtering, and the ability to collect the log for alternate storage / forwarding to other services.
- */
-public struct Log {
+public struct Logging {
     /**
-     Log level. Higher levels are inclusive of lower levels.
-     
-     - Debug: The level for debugging or trace information.
-     - Warn: The level for warning situations.
-     - Error: The level for error situations.
-     - None: The level for fatal errors, can also be used for 'always log'.
-     */
-    public enum Level: Int, CustomStringConvertible {
-        case debug = 3
-        case warn =  2
-        case error = 1
-        case none =  0
-        
-        public var description: String {
-            switch(self) {
-            case .debug:
-                return "Debug"
-            case .warn:
-                return "Warning"
-            case .error:
-                return "Error"
-            case .none:
-                return "No specific level"
-            }
-        }
-    }
-    
-    /**
-     The level at which to output supplied logs.
-     Any log input with the specified level or a lower level will be included in the log, and input with a higher level will be suppressed.
-     - Default value: .Warn
-     */
-    public static var logLevel: Level = .warn
-    /**
-     The domain for which to output supplied logs.
-     - Default value: .Common
-     */
-    public static var logDomain: LogDomain = Domain.common
-    /**
-     Determines if the log prints output to the console or not.
-     When not printing to the console any permissible output is still returned from the log function (useful when the log is to be redirected to a file or alternate service).
+     Determines if the loggers print output or not. Applies to all loggers, no matter the domain or level.
      - Default value: true
      */
-    public static var printLog: Bool = true
+    public static var isEnabled: Bool = true
+    
     /**
      The date formatter used to timestamp log output.
      - Default value: 'HH:mm:ss.SSSS'
      */
-    public static var formatter: DateFormatter = {
+    public static var timestampFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SSSS"
         return formatter
     }()
+}
+
+public protocol LogDomain: Hashable, CustomStringConvertible {}
+public protocol LogLevel: RawRepresentable, Hashable, CustomStringConvertible {}
+
+public typealias ExternalLogger = (String) -> Void
+
+/**
+ General purpose collection of loggers, offering levels and filtering, and the ability to collect the log for alternate storage / forwarding to other services.
+ */
+public struct Log<D: LogDomain, L: LogLevel> where L.RawValue: Comparable {
+    
+    public typealias LoggerSpec = (domain: D, level: L, logger: ExternalLogger?)
+    
+    private let loggers: [D:Logger<L>]
+    
+    public init(specs: [LoggerSpec]) {
+        var loggers: [D:Logger<L>] = [:]
+        
+        for spec in specs {
+            loggers[spec.domain] = Logger(logLevel: spec.level, externalLogger: spec.logger)
+        }
+        
+        self.loggers = loggers
+    }
+    
+    /**
+     Get a domain specific logger.
+     Throws for requests where a domain hasn't been configured with a logger.
+     */
+    public func log(_ domain: D) -> Logger<L> {
+        return self.loggers[domain]!
+    }
+    
+    /**
+     Generate a domain specific log output based on the current level.
+     The level and domain will be used to filter content and output.
+     
+     - Required:
+     - domain: The log domain
+     - level: The `Level` for the log
+     - object: The object to be logged, usually a string or something conforming to `CustomStringConvertible`
+     
+     - Optional:
+     - filename: The name of the source code file which generated the log
+     - Default value: #file
+     - line: The line number of the source code file which generated the log
+     - Default value: #line
+     - funcname: The name of the function which generated the log
+     - Default value: #function
+     */
+    public func log<T>(_ domain: D, _ level: L, _ object: T, filename: String = #file, line: Int = #line, funcname: String = #function) {
+        let logger = self.log(domain)
+        
+        logger.log(level, object, filename: filename, line: line, funcname: funcname)
+    }
+}
+
+/**
+ General purpose logging, offering levels and respecting broad enabling, and the ability to collect the log for alternate storage / forwarding to other services.
+ */
+public struct Logger<L: LogLevel> where L.RawValue: Comparable {
+    
+    /**
+     The level at which to output supplied logs.
+     Any log input with the specified level or a lower level will be included in the log, and input with a higher level will be suppressed.
+     */
+    public let logLevel: L
+    private let externalLogger: ExternalLogger?
+    
+    fileprivate init(logLevel: L, externalLogger: ExternalLogger?) {
+        self.logLevel = logLevel
+        self.externalLogger = externalLogger
+    }
     
     /**
      Generate log output based on the current level and domain filters.
-     The level and domain will be used to filter content and output. Filtered logs will generate an empty string as the output.
+     The level and domain will be used to filter content and output.
      
-     - Returns: The formatted log output, or an empty string if the input is filtered.
-     
-     - Required: 
-        - level: The `Level` for the log
-        - object: The object to be logged, usually a string or something conforming to `CustomStringConvertible`
+     - Required:
+     - level: The `Level` for the log
+     - object: The object to be logged, usually a string or something conforming to `CustomStringConvertible`
      
      - Optional:
-        - domain: The `LogDomain` for the log
-            - Default value: Domain.Common
-        - filename: The name of the source code file which generated the log
-            - Default value: #file
-        - line: The line number of the source code file which generated the log
-            - Default value: #line
-        - funcname: The name of the function which generated the log
-            - Default value: #function
+     - filename: The name of the source code file which generated the log
+     - Default value: #file
+     - line: The line number of the source code file which generated the log
+     - Default value: #line
+     - funcname: The name of the function which generated the log
+     - Default value: #function
      */
-    @discardableResult public static func log<T>(_ level: Level, _ object: T, domain: LogDomain = Domain.common, filename: String = #file, line: Int = #line, funcname: String = #function) -> String
+    public func log<T>(_ level: L, _ object: T, filename: String = #file, line: Int = #line, funcname: String = #function)
     {
-        guard logDomain == Domain.common || domain == logDomain else { return "" }
-        guard level.rawValue <= Log.logLevel.rawValue else { return "" }
+        guard Logging.isEnabled else { return }
+        guard level.rawValue <= self.logLevel.rawValue else { return }
         
-        let full = "\(formatter.string(from: Date())) \(level.description): \((filename as NSString).lastPathComponent) (\(line)) \(funcname) : \(object)"
+        let full = "\(Logging.timestampFormatter.string(from: Date())) \(level.description): \((filename as NSString).lastPathComponent) (\(line)) \(funcname) : \(object)"
         
-        if printLog {
-            print(full)
+        if let externalLogger = self.externalLogger {
+            externalLogger(full)
         }
         
-        return full
+        print(full)
     }
 }

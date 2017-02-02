@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B08CCA2E1CC8DFDE00FB17EE"
+               BlueprintIdentifier = "B06A5CED1E4358D500DAFF6B"
                BuildableName = "LogTests.xctest"
-               BlueprintName = "Log-macOSTests"
+               BlueprintName = "LogTests"
                ReferencedContainer = "container:Log.xcodeproj">
             </BuildableReference>
          </TestableReference>
